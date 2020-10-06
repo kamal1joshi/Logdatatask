@@ -1,0 +1,35 @@
+<?php 
+    echo "<pre>";
+    $logdata = $block->getText();
+?>
+
+<div class="container">
+    <h3>Login-Logout Details</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Log Num</th>
+                <th>Email ID</th>
+                <th>Login Time</th>
+                <th>Logout Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                foreach ($logdata as  $value) {
+            ?>
+                <tr>
+                    <td><?php echo $value['logdata_id'] ?></td>
+                    <td><?=  $value['email'] ?></td>
+                    <td><?=  $value['login'] ?></td>
+                    <td><?php echo $value['logout']?></td>
+                </tr>
+    <?php
+    } 
+    ?>    
+        </tbody>
+    </table>
+</div>
+
+
+
