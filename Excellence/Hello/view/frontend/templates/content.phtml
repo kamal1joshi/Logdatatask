@@ -1,0 +1,35 @@
+<?php 
+    $logdata = $block->getLogHistory();
+?>
+
+<div class="container">
+   <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Log ID</th>
+                <th>Email ID</th>
+                <th>Login Time</th>
+                <th>Logout Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                foreach ($logdata as  $value) {
+            ?>
+                <tr>
+                    <td><?php echo $value['logdata_id'] ?></td>
+                    <td><?=  $value['email'] ?></td>
+                    <td><?=  $value['login'] ?></td>
+                    <td><?php echo $value['logout']?></td>
+                </tr>
+            <?php
+            } 
+            ?>    
+        </tbody>
+    </table>
+</div>
+
+<?php if ($block->getPagerHtml()){ ?>
+    <div class="order-products-toolbar toolbar bottom custom-pager"><?php echo $block->getPagerHtml(); ?></div>
+<?php } ?>
+
