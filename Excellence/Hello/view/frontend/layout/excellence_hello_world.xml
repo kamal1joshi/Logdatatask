@@ -6,4 +6,7 @@
             class="Excellence\Hello\Block\Main"
             name="excellence_test"/>
     </referenceContainer>
+    <head>
+		<css src="Excellence_Hello::css/logdata.css"/>
+	</head>
 </page>
