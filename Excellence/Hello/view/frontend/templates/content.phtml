@@ -1,12 +1,13 @@
 <?php 
-    $logdata = $block->getLogHistory();
+    $logdata = $block->getText();
 ?>
 
 <div class="container">
-   <table class="table table-striped">
+    <h3>Login-Logout Details</h3>
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Log ID</th>
+                <th>Log Num</th>
                 <th>Email ID</th>
                 <th>Login Time</th>
                 <th>Logout Time</th>
@@ -22,14 +23,12 @@
                     <td><?=  $value['login'] ?></td>
                     <td><?php echo $value['logout']?></td>
                 </tr>
-            <?php
-            } 
-            ?>    
+    <?php
+    } 
+    ?>    
         </tbody>
     </table>
 </div>
 
-<?php if ($block->getPagerHtml()){ ?>
-    <div class="order-products-toolbar toolbar bottom custom-pager"><?php echo $block->getPagerHtml(); ?></div>
-<?php } ?>
+
 
