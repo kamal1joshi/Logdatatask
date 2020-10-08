@@ -9,4 +9,7 @@
     <head>
 		<css src="Excellence_Hello::css/logdata.css"/>
 	</head>
+     <head>
+		<script src="Excellence_Hello::js/logdata.js"/>
+	</head>
 </page>
