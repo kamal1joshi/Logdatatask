@@ -44,13 +44,9 @@
             $page=($this->getRequest()->getParam('p'))? $this->getRequest()->getParam('p') : 1;
             $pageSize=($this->getRequest()->getParam('limit'))? $this->getRequest
             ()->getParam('limit') : 5;
-            
             $collection = $this->_logtestFactory->create()->getCollection();
             $collection->setPageSize($pageSize);
             $collection->setCurPage($page);
             return $collection;
         }
     }
-
-
-

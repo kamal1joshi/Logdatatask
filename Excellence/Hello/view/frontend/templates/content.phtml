@@ -7,10 +7,10 @@
    <table class="table table-striped"  id="table">
         <thead>
             <tr>
-                <th onclick="sortTable(0)">Log ID</th>
+                <th onclick="sortId()">Log ID</th>
                 <th onclick="sortTable(1)">Email ID</th>
                 <th onclick="sortTable(2)">Login Time</th>
-                <th  onclick="sortTable(3)">Logout Time</th>
+                <th onclick="sortTable(3)">Logout Time</th>
             </tr>
         </thead>
         <tbody>
@@ -33,9 +33,3 @@
 <?php if ($block->getPagerHtml()){ ?>
     <div class="order-products-toolbar toolbar bottom custom-pager"><?php echo $block->getPagerHtml(); ?></div>
 <?php } ?>
-
-
-
-
-		
-
