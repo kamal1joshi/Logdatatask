@@ -38,4 +38,3 @@ class Time implements ObserverInterface
         $collections->save();
     }
 }
-

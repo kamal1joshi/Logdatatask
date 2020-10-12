@@ -1,113 +1,137 @@
-function sortTable(n) {
-    var table;
-    table = document.getElementById("table");
-    var rows, i, x, y, count = 0;
-    var switching = true;
+function sortId() {
 
-    var direction = "ascending";
+    var url = window.location.href;
+    var hash = location.hash;
+    url = url.replace(hash, '');
 
+    if (url.indexOf("?") >= 0) {
 
-    while (switching) {
-        switching = false;
-        var rows = table.rows;
+        var params = url.substring(url.indexOf("?") + 1).split("&");
+        var paramFound = false;
+        params.forEach(function(param, index) {
 
+            var p = param.split("=");
+            if (p[0] == "TableSort") {
 
-        for (i = 1; i < (rows.length - 1); i++) {
-            var Switch = false;
-
-
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
-            var val1 = x.innerHTML.toLowerCase();
-            var val2 = y.innerHTML.toLowerCase();
-
-            if (direction == "ascending") {
-
-                if (val1 > val2) {
-
-                    Switch = true;
-                    break;
+                if (p[1] == "Idasc") {
+                    params[index] = "TableSort" + "=" + "Iddesc";
+                } else {
+                    params[index] = "TableSort" + "=" + "Idasc";
                 }
-            } else if (direction == "descending") {
-
-
-                if (val1 < val2) {
-
-                    Switch = true;
-                    break;
-                }
+                paramFound = true;
             }
+        });
+
+        if (!paramFound) {
+            params.push("TableSort" + "=" + "Idasc");
         }
-        if (Switch) {
-
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-
-
-            count++;
-        } else {
-
-            if (count == 0 && direction == "ascending") {
-                direction = "descending";
-                switching = true;
-            }
-        }
+        url = url.substring(0, url.indexOf("?") + 1) + params.join("&");
+    } else {
+        url += "?" + "TableSort" + "=" + "Idasc";
     }
+    window.location.href = url + hash;
 };
 
-function sortId() {
-    var table;
-    table = document.getElementById("table");
-    var rows, i, x, y, count = 0;
-    var switching = true;
 
-    var direction = "ascending";
+function sortEmail() {
 
+    var url = window.location.href;
+    var hash = location.hash;
+    url = url.replace(hash, '');
 
-    while (switching) {
-        switching = false;
-        var rows = table.rows;
+    if (url.indexOf("?") >= 0) {
 
+        var params = url.substring(url.indexOf("?") + 1).split("&");
+        var paramFound = false;
+        params.forEach(function(param, index) {
 
-        for (i = 1; i < (rows.length - 1); i++) {
-            var Switch = false;
+            var p = param.split("=");
+            if (p[0] == "TableSort") {
 
-
-            x = rows[i].getElementsByTagName("TD")[0];
-            y = rows[i + 1].getElementsByTagName("TD")[0];
-            var val1 = x.innerHTML;
-            var val2 = y.innerHTML;
-
-            if (direction == "ascending") {
-
-                if (Number(val1) > Number(val2)) {
-
-                    Switch = true;
-                    break;
+                if (p[1] == "Emailasc") {
+                    params[index] = "TableSort" + "=" + "Emaildesc";
+                } else {
+                    params[index] = "TableSort" + "=" + "Emailasc";
                 }
-            } else if (direction == "descending") {
-
-
-                if (Number(val1) < Number(val2)) {
-
-                    Switch = true;
-                    break;
-                }
+                paramFound = true;
             }
+        });
+
+        if (!paramFound) {
+            params.push("TableSort" + "=" + "Emailasc");
         }
-        if (Switch) {
-
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-
-
-            count++;
-        } else {
-
-            if (count == 0 && direction == "ascending") {
-                direction = "descending";
-                switching = true;
-            }
-        }
+        url = url.substring(0, url.indexOf("?") + 1) + params.join("&");
+    } else {
+        url += "?" + "TableSort" + "=" + "Emailasc";
     }
+    window.location.href = url + hash;
+};
+
+
+function sortIn() {
+
+    var url = window.location.href;
+    var hash = location.hash;
+    url = url.replace(hash, '');
+
+    if (url.indexOf("?") >= 0) {
+
+        var params = url.substring(url.indexOf("?") + 1).split("&");
+        var paramFound = false;
+        params.forEach(function(param, index) {
+
+            var p = param.split("=");
+            if (p[0] == "TableSort") {
+
+                if (p[1] == "Inasc") {
+                    params[index] = "TableSort" + "=" + "Indesc";
+                } else {
+                    params[index] = "TableSort" + "=" + "Inasc";
+                }
+                paramFound = true;
+            }
+        });
+
+        if (!paramFound) {
+            params.push("TableSort" + "=" + "Inasc");
+        }
+        url = url.substring(0, url.indexOf("?") + 1) + params.join("&");
+    } else {
+        url += "?" + "TableSort" + "=" + "Inasc";
+    }
+    window.location.href = url + hash;
+};
+
+function sortOut() {
+
+    var url = window.location.href;
+    var hash = location.hash;
+    url = url.replace(hash, '');
+
+    if (url.indexOf("?") >= 0) {
+
+        var params = url.substring(url.indexOf("?") + 1).split("&");
+        var paramFound = false;
+        params.forEach(function(param, index) {
+
+            var p = param.split("=");
+            if (p[0] == "TableSort") {
+
+                if (p[1] == "Outasc") {
+                    params[index] = "TableSort" + "=" + "Outdesc";
+                } else {
+                    params[index] = "TableSort" + "=" + "Outasc";
+                }
+                paramFound = true;
+            }
+        });
+
+        if (!paramFound) {
+            params.push("TableSort" + "=" + "Outasc");
+        }
+        url = url.substring(0, url.indexOf("?") + 1) + params.join("&");
+    } else {
+        url += "?" + "TableSort" + "=" + "Outasc";
+    }
+    window.location.href = url + hash;
 };
