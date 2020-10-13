@@ -28,10 +28,10 @@ class Timein implements ObserverInterface
     }
  
     public function execute(Observer $observer)
-    {
+    {    
         $custmail = $this->_customerSession->getCustomerData()->getEmail();
         if ($this->_customerSession->isLoggedIn()) {
         $this->_logtestFactory->create()->setData(array('email' => "$custmail"))->save();  }
     }
 }
-
+?>
