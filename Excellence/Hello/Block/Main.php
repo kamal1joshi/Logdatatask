@@ -1,4 +1,4 @@
-<?php
+<?php 
     
     namespace Excellence\Hello\Block;
     class Main extends \Magento\Framework\View\Element\Template
@@ -24,7 +24,7 @@
                     'Magento\Theme\Block\Html\Pager',
                     'reward.history.pager'
                 )->setAvailableLimit(array(5=>5,10=>10,15=>15,20=>20))
-                    ->setShowPerPage(true)->setCollection(
+                    ->setShowPerPage(false)->setCollection(
                     $this->getLogHistory()
                 );
                 $this->setChild('pager', $pager);
@@ -38,14 +38,20 @@
             return $this->getChildHtml('pager');
         }
 
-        Public function getLogHistory()
+        public function getLogHistory()
         {
             $page=($this->getRequest()->getParam('p'))? $this->getRequest()->getParam('p') : 1;
             $pageSize=($this->getRequest()->getParam('limit'))? $this->getRequest
             ()->getParam('limit') : 5;
            
-            if(isset($_GET['TableSort'])){
-                $collection = $this->collectionsort();
+            if(isset($_GET['TableSort']) || isset($_GET['email'])){
+
+                if(!isset($_GET['TableSort'])){
+                    $collection = $this->customerByEmail();
+                }
+                else{
+                    $collection = $this->collectionsort();
+                }
             }else{
                 $collection = $this->_logtestFactory->create()->getCollection();
             }
@@ -54,41 +60,53 @@
             $collection->setCurPage($page);
             return $collection;
         }
+
+        public function customerByEmail()
+        {    
+            $Cusemail = $_GET['email'];
+            $Cusemail = "%". $Cusemail."%";
+            return $this->_logtestFactory->create()->getCollection()->addFieldToFilter("email", array('like' => "$Cusemail"));
+        }
       
-        Public function collectionsort()
+        public function collectionsort()
         {
             $Sortvar = $_GET['TableSort'];
 
+            if(isset($_GET['email'])){
+                $defaultcollect = $this->customerByEmail();
+            }else{
+                $defaultcollect = $this->_logtestFactory->create()->getCollection(); }
+
             if ($Sortvar == "Idasc" ){
-                $collect = $this->_logtestFactory->create()->getCollection()->setOrder('logdata_id','ASC');
+                $collect = $defaultcollect->setOrder('logdata_id','ASC');
                 return $collect;   
             }
             elseif ($Sortvar == "Iddesc" ){
-                $collect = $this->_logtestFactory->create()->getCollection()->setOrder('logdata_id','DESC');
+                $collect = $defaultcollect->setOrder('logdata_id','DESC');
                 return $collect;   
             } 
             elseif ($Sortvar == "Emailasc" ) {
-                $collect = $this->_logtestFactory->create()->getCollection()->setOrder('email','ASC');  
+                $collect = $defaultcollect->setOrder('email','ASC');  
                 return $collect;   
             } 
             elseif ($Sortvar == "Emaildesc" ) {
-                $collect = $this->_logtestFactory->create()->getCollection()->setOrder('email','DESC');
+                $collect = $defaultcollect->setOrder('email','DESC');
                 return $collect;   
             } 
             elseif ($Sortvar == "Inasc" ) {
-                $collect = $this->_logtestFactory->create()->getCollection()->setOrder('login','ASC');  
+                $collect = $defaultcollect->setOrder('login','ASC');  
                 return $collect;   
             } 
             elseif ($Sortvar == "Indesc" ) {
-                $collect = $this->_logtestFactory->create()->getCollection()->setOrder('login','DESC');
+                $collect = $defaultcollect->setOrder('login','DESC');
                 return $collect;   
             } 
             elseif ($Sortvar == "Outasc" ) {
-                $collect = $this->_logtestFactory->create()->getCollection()->setOrder('logout','ASC');  
+                $collect = $defaultcollect->setOrder('logout','ASC');  
                 return $collect;   
             } 
             else{
-                $collect = $this->_logtestFactory->create()->getCollection()->setOrder('logout','DESC');
+                $collect = $defaultcollect->setOrder('logout','DESC');
                 return $collect;   
             } 
         }
