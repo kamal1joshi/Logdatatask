@@ -24,7 +24,7 @@
                     'Magento\Theme\Block\Html\Pager',
                     'reward.history.pager'
                 )->setAvailableLimit(array(5=>5,10=>10,15=>15,20=>20))
-                    ->setShowPerPage(true)->setCollection(
+                    ->setShowPerPage(false)->setCollection(
                     $this->getLogHistory()
                 );
                 $this->setChild('pager', $pager);
@@ -44,7 +44,7 @@
             $pageSize=($this->getRequest()->getParam('limit'))? $this->getRequest
             ()->getParam('limit') : 5;
            
-            if(isset($_GET['TableSort']) || isset($_POST['email'])){
+            if(isset($_GET['TableSort']) || isset($_GET['email'])){
 
                 if(!isset($_GET['TableSort'])){
                     $collection = $this->customerByEmail();
@@ -63,7 +63,7 @@
 
         public function customerByEmail()
         {    
-            $Cusemail = $_POST['email'];
+            $Cusemail = $_GET['email'];
             $Cusemail = "%". $Cusemail."%";
             return $this->_logtestFactory->create()->getCollection()->addFieldToFilter("email", array('like' => "$Cusemail"));
         }
@@ -72,7 +72,7 @@
         {
             $Sortvar = $_GET['TableSort'];
 
-            if(isset($_POST['email'])){
+            if(isset($_GET['email'])){
                 $defaultcollect = $this->customerByEmail();
             }else{
                 $defaultcollect = $this->_logtestFactory->create()->getCollection(); }
