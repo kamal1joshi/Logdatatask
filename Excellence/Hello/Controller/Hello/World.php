@@ -1,7 +1,7 @@
 <?php
     
     namespace Excellence\Hello\Controller\Hello; 
-    class World extends \Magento\Framework\App\Action\Action
+    class World extends \Magento\Framework\App\Action\Action 
     {
         protected $resultPageFactory;
         public function __construct(
@@ -20,4 +20,3 @@
         } 
     }
 ?>
-
