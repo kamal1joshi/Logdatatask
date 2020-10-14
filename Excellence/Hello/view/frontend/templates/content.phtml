@@ -1,7 +1,12 @@
 <?php 
     $logdata = $block->getLogHistory();
+    if(isset($_GET['email'])){
+        $emailval = $_GET['email'];
+    }else{
+        $emailval = '';
+    }
 ?>
-<div class="block block-search logdata">
+<div class="block block-search logdata"> 
     <div class="block block-title"><strong>Search</strong></div>
     <div class="block block-content">
        <form class="form minisearch" id="search_mini_form"  action="<?= $block->getUrl("excellence/hello/world"); ?>" method="get">
@@ -10,7 +15,7 @@
                     <span>Search</span>
                 </label>
                 <div class="control">
-                    <input id="search" type="text" name="email" value="" placeholder="Search email..." class="input-text" maxlength="128" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off" aria-expanded="false">
+                    <input id="search" type="text" name="email" value="<?php echo $emailval ?>" placeholder="Search email..." class="input-text" maxlength="128" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off" aria-expanded="false">
                     <div id="search_autocomplete" class="search-autocomplete" style="display: none;"></div>
                 </div>
             </div>
@@ -35,6 +40,15 @@
         </thead>
         <tbody>
             <?php
+            if ($logdata->getSize() <= 0) {?>
+                <tr>
+                    <td></td>
+                    <td><h4><?= "No Results Found...";  ?></h4></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            <?php
+                }else{
                 foreach ($logdata as  $value) {
             ?>
                 <tr>
@@ -44,7 +58,7 @@
                     <td><?php echo $value['logout']?></td>
                 </tr>
             <?php
-            } 
+            }} 
             ?>    
         </tbody>
     </table>
