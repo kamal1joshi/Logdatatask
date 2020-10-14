@@ -1,39 +1,45 @@
-function sortId() {
+define([],function () {
 
-    var url = window.location.href;
-    var hash = location.hash;
-    url = url.replace(hash, '');
+    
+    return  {
+        sortId: function () {
+ 
+// function sortId() {
 
-    if (url.indexOf("?") >= 0) {
+        var url = window.location.href;
+        var hash = location.hash; 
+        url = url.replace(hash, '');
 
-        var params = url.substring(url.indexOf("?") + 1).split("&");
-        var paramFound = false;
-        params.forEach(function(param, index) {
+        if (url.indexOf("?") >= 0) {
 
-            var p = param.split("=");
-            if (p[0] == "TableSort") {
+            var params = url.substring(url.indexOf("?") + 1).split("&");
+            var paramFound = false;
+            params.forEach(function(param, index) {
 
-                if (p[1] == "Idasc") {
-                    params[index] = "TableSort" + "=" + "Iddesc";
-                } else {
-                    params[index] = "TableSort" + "=" + "Idasc";
+                var p = param.split("=");
+                if (p[0] == "TableSort") {
+
+                    if (p[1] == "Idasc") {
+                        params[index] = "TableSort" + "=" + "Iddesc";
+                    } else {
+                        params[index] = "TableSort" + "=" + "Idasc";
+                    }
+                    paramFound = true;
                 }
-                paramFound = true;
+            });
+
+            if (!paramFound) {
+                params.push("TableSort" + "=" + "Idasc");
             }
-        });
-
-        if (!paramFound) {
-            params.push("TableSort" + "=" + "Idasc");
+            url = url.substring(0, url.indexOf("?") + 1) + params.join("&");
+        } else {
+            url += "?" + "TableSort" + "=" + "Idasc";
         }
-        url = url.substring(0, url.indexOf("?") + 1) + params.join("&");
-    } else {
-        url += "?" + "TableSort" + "=" + "Idasc";
-    }
-    window.location.href = url + hash;
-};
+        window.location.href = url + hash;
+    },
 
-
-function sortEmail() {
+    sortEmail: function (){
+// function sortEmail() {
 
     var url = window.location.href;
     var hash = location.hash;
@@ -65,10 +71,9 @@ function sortEmail() {
         url += "?" + "TableSort" + "=" + "Emailasc";
     }
     window.location.href = url + hash;
-};
+},
 
-
-function sortIn() {
+sortIn: function (){
 
     var url = window.location.href;
     var hash = location.hash;
@@ -100,9 +105,9 @@ function sortIn() {
         url += "?" + "TableSort" + "=" + "Inasc";
     }
     window.location.href = url + hash;
-};
+},
 
-function sortOut() {
+sortOut: function(){
 
     var url = window.location.href;
     var hash = location.hash;
@@ -134,4 +139,7 @@ function sortOut() {
         url += "?" + "TableSort" + "=" + "Outasc";
     }
     window.location.href = url + hash;
-};
+}
+    }
+
+});
