@@ -67,3 +67,10 @@
 <?php if ($block->getPagerHtml()){ ?>
     <div class="order-products-toolbar toolbar bottom custom-pager"><?php echo $block->getPagerHtml(); ?></div>
 <?php } ?>
+
+<script>
+   requirejs(['customlog'],function(t){
+     t.sortId();
+     
+   })
+</script>
